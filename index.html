@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Password Generator</title>
+
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+    html, body {
+      padding: 3px;
+      margin: 0px;
+      width: 100%;
+      height: 100%;
+      background: #8A2BE2;
+      position: relative;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    div.content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      text-align: center;
+    }
+
+    h3 {
+      word-wrap: break-word;
+    }
+
+    button {
+      width: 100%;
+      height: 70px;
+      text-align: center;
+      background: #8B0000;
+      color: #FFFFFF;
+      border: none;
+      font-size: 2em;
+    }
+
+    input, select {
+      width: 100%;
+      height: 50px;
+      background: #1abc9c;
+      color: #FFF;
+      border: none;
+      margin-bottom: 15px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="content">
+    <h1>Password Generator</h1>
+    <h3 id="output">&nbsp;</h3>
+    <br />
+    <input type="number" value="8" id="length"/>
+    <select id="charset">
+      <option value="abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789">Select Character Set...</option>
+      <option value="abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^*()-+_=,./\[]{}~">Alphanumeric with Symbols (Recommended)</option>
+      <option value="abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789">Alphanumeric</option>
+      <option value="0123456789">Numeric (Not Recommended)</option>
+      <option value="abcdefghijklnopqrstuvwxyz">Lowercase Alphabet (Not Recommended)</option>
+      <option value="ABCEFGHIJKLMNOPQRSTUVWXYZ">Uppercase Alphabet (Not Recommended)</option>
+      <option value="abcdefghijklnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ">Mixed Alphabet (Not Recommended)</option>
+    </select>
+    <button onclick="generatePassword()">Generate Password</button>
+  </div>
+  <script>
+    function generatePassword() {
+      var length = document.getElementById('length').value;
+      var charset = document.getElementById('charset').value;
+      var password = "";
+      for (var i = 0, n = charset.length; i < length; ++i) {
+          password += charset.charAt(Math.floor(Math.random() * n));
+      }
+      var elem = document.getElementById('output');
+      elem.innerHTML = password;
+    }
+  </script>
+</body>
+</html>
